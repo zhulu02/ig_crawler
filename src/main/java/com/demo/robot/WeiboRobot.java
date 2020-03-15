@@ -1,7 +1,4 @@
-/*
- * Copyright © 2018 Hunan Antdu Software Co., Ltd.. All rights reserved.
- * 版权所有©2018湖南蚁为软件有限公司。保留所有权利。
- */
+
 
 package com.demo.robot;
 

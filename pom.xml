@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.demo</groupId>
-    <artifactId>crawler</artifactId>
+    <artifactId>ig_crawler</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <!--声明为spring-boot 工程-->
@@ -100,7 +100,7 @@
                     <includes>
                         <include>
                             <groupId>com.demo</groupId>
-                            <artifactId>crawler</artifactId>
+                            <artifactId>ig_crawler</artifactId>
                         </include>
                     </includes>
                 </configuration>
