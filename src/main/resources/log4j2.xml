@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ~ Copyright (c) 2010-2015 EEFUNG Software Co.Ltd. All rights reserved. 
+	~ 版权所有(c)2010-2015湖南蚁坊软件有限公司。保留所有权利。 -->
+
+<configuration status="WARN" monitorInterval="30"
+	schema="Log4j-config.xsd">
+
+	<Properties>
+		<Property name="log.name">stdout</Property>
+		<Property name="log.name.error">error</Property>
+		<Property name="log.path">logs</Property>
+		<Property name="log.style">%d [%-15.15t] %-5p %-30.30c{1} - %m%n
+		</Property>
+	</Properties>
+
+	<appenders>
+		<Console name="console" target="SYSTEM_OUT" ignoreExceptions="false">
+			<PatternLayout pattern="${log.style}" />
+		</Console>
+
+		<RollingRandomAccessFile name="file"
+			fileName="${log.path}/${log.name}.log" filePattern="${log.path}/${log.name}-%d{yyyy-MM-dd}.log.%i"
+			append="true">
+			<ThresholdFilter level="info" onMatch="ACCEPT"
+				onMismatch="DENY" />
+			<PatternLayout pattern="${log.style}" />
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="100MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="10">
+				<Delete basePath="${log.path}" maxDepth="1">
+					<IfFileName glob="${log.name}-*.log.*" />
+					<IfLastModified age="2d" />
+				</Delete>
+			</DefaultRolloverStrategy>
+		</RollingRandomAccessFile>
+
+		<RollingRandomAccessFile name="file_error"
+			fileName="${log.path}/${log.name.error}.log" filePattern="${log.path}/${log.name.error}-%d{yyyy-MM-dd}.log.%i"
+			append="true">
+			<ThresholdFilter level="error" onMatch="ACCEPT"
+				onMismatch="DENY" />
+			<PatternLayout pattern="${log.style}" />
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="10 MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="10">
+				<Delete basePath="${log.path}" maxDepth="1">
+					<IfFileName glob="${log.name.error}-*.log.*" />
+					<IfLastModified age="2d" />
+				</Delete>
+			</DefaultRolloverStrategy>
+		</RollingRandomAccessFile>
+	</appenders>
+
+	<loggers>
+		<root level="info" includeLocation="true">
+			<AppenderRef ref="file" />
+			<AppenderRef ref="file_error" />
+			<AppenderRef ref="console" />
+		</root>
+	</loggers>
+</configuration>
