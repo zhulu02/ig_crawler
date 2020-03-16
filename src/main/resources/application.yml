@@ -1,6 +1,6 @@
 server.port: 8089
 
 proxy:
-  alive: false
+  alive: true
   ip: 192.168.0.101
   port: 1082
